@@ -235,6 +235,7 @@ void read(char **command) {
         return;
     }
     while (fgets(line, sizeof(line), file)) {
+        printf("%s", line);
         makeUppercase(line);
         tokenize(line, command);
         if (*command[0] == 'E') { //Exit
@@ -289,11 +290,11 @@ int main() {
         if (size > 0) {
             cmdline[size - 1] = 0;
             makeUppercase(cmdline);
+            printf("%s\n", cmdline);
             tokenize(cmdline, command);
         }
         executeCommand(command);
         if (exitStatus) {
-            printf("Exiting now\n");
             break;
         }
     }
